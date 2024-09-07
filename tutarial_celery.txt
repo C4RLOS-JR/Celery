@@ -1,0 +1,21 @@
+Instalar siatema de filas (Redis)
+
+No terminal:
+
+→ sudo apt install Redis  (instalar o redis)
+→ redis-cli --version     (verificar a versão do redis)
+
+→ sudo systemctl status redis         (verificar o status do redis)
+→ sudo systemctl stop redis           (parar o redis)
+→ sudo systemctl start redis-server   (iniciar o redis)
+
+→ redis-cli   (confirmar que o redis está mesmo rodando)
+→ ping        (tem que responder 'PONG')
+
+
+No VsCode:
+
+→ pip install celery
+→ pip install redis
+→ 
+→ 
