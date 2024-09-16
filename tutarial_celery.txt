@@ -1,4 +1,4 @@
-Instalar siatema de filas (Redis)
+Instalar sistema de filas (Redis)
 
 No terminal:
 
@@ -15,7 +15,50 @@ No terminal:
 
 No VsCode:
 
+Instalar as bibliotécas:
 → pip install celery
 → pip install redis
-→ 
-→ 
+
+=====================================================
+
+  BROKER
+
+-----------------------------------------------------
+
+Criar o arquivo "tarefas.py" (manda uma tarefa para o broker):
+
+from celery import Celery
+
+app = Celery(broker='redis://127.0.0.1:6379/0')
+
+@app.task
+def exibir():
+  return 'teste'
+
+-----------------------------------------------------
+
+Criar o arquivo "app.py" (chama a função 'exibir()' de tarefas.py):
+
+from tarefas import exibir
+
+x = exibir()
+print(x)  # printa a hash da tarefa.
+
+=====================================================
+
+  WORKER
+
+-----------------------------------------------------
+
+Rodar o worker:
+
+celery -A tarefas worker --loglevel=INFO
+
+=====================================================
+
+  FLOWER
+
+-----------------------------------------------------
+
+pip install flower
+celery -A tarefas flower --adress=127.0.0.1 --port=5566
